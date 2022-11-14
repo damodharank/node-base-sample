@@ -1,0 +1,16 @@
+{
+  "name": "node-base",
+  "version": "1.0.0",
+  "description": "sample base application ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon ./index.js | bunyan",
+    "start": "node ./index.js | bunyan"
+  },
+  "author": "Damodharan kothandaraman",
+  "license": "ISC",
+  "dependencies": {
+    "bunyan": "^1.8.15"
+  }
+}
