@@ -1,15 +1,34 @@
 const http = require("http");
-require("dotenv").config();
+const { Server } = require("./server");
+const serverConfig = require('./server-config');
+const {
+  https: { key, cert },
+  port,
+  isHttps,
+  serviceUrl,
+} = serverConfig;
+// ALL Server 
+async function startServer() {
+  console.log("Start All Server ...");
+  // let server = Server.GetAllServer()
+}
 
-const hostname = "127.0.0.1";
-const port = process.env.PORT || 3002;
-const server = http.createServer((req, res) => {
-  console.log("POST FROM ENV ===>", process.env.PORT);
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello Node World welcome you ");
-});
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+// Only HTTP Server 
+async function startHttpServer() {
+  console.log("Start Http Server ...");
+  const { httpServer } = await Server.GetHttpServer();
+   await new Promise((resolve) =>
+     httpServer.listen(
+       {
+         port: JSON.parse(port),
+       },
+       resolve
+     )
+   );
+   console.log(`Server running at http://${serviceUrl}:${port}/`);
+ 
+}
+startHttpServer();
+
+
