@@ -11,6 +11,7 @@ class Server {
     const app = express();
     app.use(cors());
     app.use(compression());
+    
     return app;
   }
 
@@ -26,9 +27,9 @@ class Server {
   }
 
   // FOR HTTP SERVER
-  static async GetHttpsServer() {
+  static async GetHttpsServer(credentials) {
     let expApp = this.GetExpressApp();
-    const httpsSrv = https.createServer(expApp);
+    const httpsSrv = https.createServer(credentials , expApp);
     return { httpsServer: httpsSrv, app: expApp };
   }
 
