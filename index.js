@@ -7,27 +7,13 @@ const {
   isHttps,
   serviceUrl,
 } = serverConfig;
-// ALL Server 
-async function startServer() {
-  console.log("Start All Server ...");
-  // let server = Server.GetAllServer()
-}
-
 
 // HTTP Server 
 async function startHttpServer() {
   console.log("Start Http Server ...");
   const { httpServer } = await Server.GetHttpServer();
-   await new Promise((resolve) =>
-     httpServer.listen(
-       {
-         port: JSON.parse(port),
-       },
-       resolve
-     )
-   );
-   console.log(`Server running at http://${serviceUrl}:${port}/`);
- 
+  httpServer.listen(port);
+  console.log(`Server running at http://${serviceUrl}:${port}/`);
 }
 //HTTPS Server
 async function startHttpsServer() {

@@ -3,6 +3,7 @@ const http = require("http");
 const https = require("https");
 const cors = require("cors");
 const compression = require("compression");
+const routes = require("./src/routes/index.route");
 
 class Server {
   static app;
@@ -11,7 +12,7 @@ class Server {
     const app = express();
     app.use(cors());
     app.use(compression());
-    
+    app.use(routes);
     return app;
   }
 
@@ -19,11 +20,12 @@ class Server {
   static async GetApolloServer() {
     return null;
   }
+
   // FOR HTTP SERVER
   static async GetHttpServer() {
-    let expApp = this.GetExpressApp();
+    let expApp = await this.GetExpressApp();
     const httpSrv = http.createServer(expApp);
-    return { httpServer: httpSrv, app: expApp };
+    return { httpServer: httpSrv, app: expApp };  
   }
 
   // FOR HTTP SERVER
@@ -35,7 +37,7 @@ class Server {
 
   // RETURN ALL SERVER
   static async GetAllServer() {
-    let expApp = this.GetExpressApp();
+    let expApp = await this.GetExpressApp();
     let apolloServer = this.GetExpressApp();
     let httpSrv = this.GetHttpServer();
     return { apolloServer: apolloServer, httpServer: httpSrv, app: expApp };
