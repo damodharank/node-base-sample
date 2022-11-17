@@ -1,14 +1,20 @@
+
 const express = require("express");
+const profile = require("./profile.route");
+
 const router = express.Router();
-router.get("/", (req, res) => {
-    console.log("DAADAD")
-    res.send("Sample Node API Version1")
+
+router.use("/profile", profile);
+
+
+router.get("/", (req, res) => res.send("Sample Node base app "));
+router.get("/health", (req, res) => {
+  const healthcheck = {
+    uptime: process.uptime(),
+    message: "OK",
+    timestamp: Date.now(),
+  };
+  res.send(JSON.stringify(healthcheck));
 });
-router.get("/dashboard", (req, res) => {
-  res.send("Dashboard page ...");
-});
-
-
-
 
 module.exports = router;
