@@ -1,12 +1,12 @@
-// Tanks to Git hub for sample Data 
+// Tanks to Git hub for sample Data Structure  
 //docs.gitlab.com/ee/api/users.html
 
 module.exports = {
-  Cars: [
+  Profiles: [
     {
       id: 1,
-      username: "john_smith",
-      name: "John Smith",
+      username: "damo_dhar",
+      name: "Damodharan Kothandaraman",
       state: "active",
       avatar_url: "http://localhost:3000/uploads/user/avatar/1/cd8.jpeg",
       web_url: "http://localhost:3000/john_smith",

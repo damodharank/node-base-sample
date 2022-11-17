@@ -1,0 +1,106 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Sample Base Sample",
+        "version": "1.0",
+        "title": "Sample Node API Base"
+    },
+    "host": "localhost:3004",
+    "basePath": "/",
+    "tags": [
+          {
+            "name": "Profile",
+            "description": "Profile API"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+       
+        "/profile": {
+            "get": {
+                "x-swagger-router-controller": "Profiles",
+                "operationId": "getAllProfiles",
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "Get all Profiles",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Get all Profiles",
+                        "schema": {
+                            "$ref": "#/definitions/ArrayOfProfiles"
+                        }
+                    }
+                }
+            }
+        },
+        "/profile/{profileId}": {
+            "get": {
+                "x-swagger-router-controller": "Profiles",
+                "operationId": "getProfileDetail",
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "Get Profile by id",
+                "parameters": [
+                    {
+                        "name": "profileId",
+                        "in": "path",
+                        "type": "number",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Profile by id",
+                        "schema": {
+                            "$ref": "#/definitions/Profile"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Profile": {
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": "0"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "john_smith"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "John Smith"
+                },
+                "state": {
+                    "type": "string",
+                    "example": "active"
+                },
+                "avatar_url": {
+                    "type": "string",
+                    "example": "http://localhost:3000/uploads/user/avatar/1/cd8.jpeg"
+                },
+                "web_url": {
+                    "type": "string",
+                    "example": "http://localhost:3000/uploads/user/avatar/1/cd8.jpeg"
+                }
+            }
+        },
+        "ArrayOfProfiles": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Profile"
+            }
+        }
+    }
+}
